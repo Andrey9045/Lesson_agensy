@@ -5,14 +5,12 @@ from phonenumbers import parse, is_valid_number, PhoneNumberFormat, format_numbe
 
 def normalize_phone_numbers(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         try:
             parsed_phone = parse(flat.owners_phonenumber, 'RU')
             if is_valid_number(parsed_phone):
                 flat.owner_pure_phone = format_number(parsed_phone, PhoneNumberFormat.E164)
         except Exception:
-            # В случае любой ошибки (например, неверный формат номера),
-            # оставляем новое поле пустым
             flat.owner_pure_phone = None
         flat.save()
 
@@ -25,4 +23,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(normalize_phone_numbers),
     ]
