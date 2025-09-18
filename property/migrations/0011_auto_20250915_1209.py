@@ -7,7 +7,7 @@ def link_owners_and_flats(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', 'Owner')
 
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.all().iterator():
         owner_name = flat.owner
         owner_phonenumber = flat.owners_phonenumber
         
