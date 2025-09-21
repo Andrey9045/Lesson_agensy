@@ -1,12 +1,5 @@
-asgiref==3.9.1
-backports-datetime-fromisoformat==2.0.3
-dj-database-url==3.0.1
 Django==5.2.6
-django-phonenumber-field==8.1.0
+dj-database-url==3.0.1
 environs==14.2.0
-marshmallow==4.0.1
 phonenumbers==9.0.13
-python-dotenv==1.1.1
-sqlparse==0.5.3
-typing_extensions==4.15.0
-tzdata==2025.2
+django-phonenumber-field==8.1.0
